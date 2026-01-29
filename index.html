@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Prompt Pack Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0b1020;
+        --card: rgba(255, 255, 255, 0.08);
+        --card-strong: rgba(255, 255, 255, 0.12);
+        --stroke: rgba(255, 255, 255, 0.16);
+        --text: #e5e7eb;
+        --muted: #a5b4fc;
+        --primary: #8b5cf6;
+        --secondary: #3b82f6;
+        --glow: rgba(139, 92, 246, 0.45);
+        --radius: 20px;
+        --shadow: 0 24px 60px rgba(10, 8, 35, 0.55);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Inter", system-ui, -apple-system, Segoe UI, sans-serif;
+        background: radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.25), transparent 55%),
+          radial-gradient(circle at 80% 10%, rgba(59, 130, 246, 0.2), transparent 45%),
+          var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        position: relative;
+        z-index: 1;
+      }
+
+      .container {
+        width: min(1120px, 92vw);
+        margin: 0 auto;
+      }
+
+      .section {
+        padding: 96px 0;
+      }
+
+      .glass {
+        background: var(--card);
+        border: 1px solid var(--stroke);
+        border-radius: var(--radius);
+        backdrop-filter: blur(18px);
+        box-shadow: var(--shadow);
+      }
+
+      .title {
+        font-size: clamp(2.6rem, 3.6vw, 4.2rem);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        background: linear-gradient(120deg, #ffffff, #d4d4ff 45%, #9ad6ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .subtitle {
+        margin-top: 16px;
+        font-size: clamp(1.1rem, 1.4vw, 1.45rem);
+        color: rgba(229, 231, 235, 0.8);
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        font-size: 0.85rem;
+        border-radius: 999px;
+        background: rgba(139, 92, 246, 0.18);
+        border: 1px solid rgba(139, 92, 246, 0.35);
+        color: #e9d5ff;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        font-weight: 600;
+      }
+
+      .hero {
+        padding-top: 120px;
+        padding-bottom: 110px;
+      }
+
+      .hero-grid {
+        display: grid;
+        gap: 48px;
+        align-items: center;
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-top: 32px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 14px 26px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 1rem;
+        border: 1px solid transparent;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      }
+
+      .btn.primary {
+        background: linear-gradient(120deg, var(--primary), var(--secondary));
+        color: white;
+        box-shadow: 0 18px 45px rgba(139, 92, 246, 0.35);
+      }
+
+      .btn.primary:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 24px 60px rgba(59, 130, 246, 0.4);
+      }
+
+      .btn.ghost {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .btn.ghost:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .hero-card {
+        padding: 28px;
+        display: grid;
+        gap: 18px;
+      }
+
+      .hero-card strong {
+        font-size: 1.15rem;
+      }
+
+      .hero-stats {
+        display: grid;
+        gap: 16px;
+      }
+
+      .stat {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 18px;
+        background: var(--card-strong);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .stat span {
+        font-weight: 600;
+      }
+
+      .section-title {
+        font-size: clamp(1.9rem, 2.6vw, 2.6rem);
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+
+      .section-lead {
+        color: rgba(229, 231, 235, 0.75);
+        margin-bottom: 36px;
+        max-width: 680px;
+      }
+
+      .grid-3 {
+        display: grid;
+        gap: 22px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .category-card {
+        padding: 22px;
+        min-height: 160px;
+        display: grid;
+        gap: 12px;
+        transition: transform 0.3s ease, border 0.3s ease;
+      }
+
+      .category-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(139, 92, 246, 0.5);
+      }
+
+      .pill {
+        display: inline-flex;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        background: rgba(59, 130, 246, 0.18);
+        color: #c7d2fe;
+      }
+
+      .feature-card {
+        padding: 24px;
+        display: grid;
+        gap: 14px;
+        align-content: start;
+      }
+
+      .icon-wrap {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(140deg, rgba(139, 92, 246, 0.3), rgba(59, 130, 246, 0.3));
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        font-size: 1.4rem;
+      }
+
+      .pricing {
+        display: grid;
+        gap: 24px;
+        align-items: center;
+      }
+
+      .price-card {
+        padding: 32px;
+        display: grid;
+        gap: 18px;
+        background: linear-gradient(160deg, rgba(139, 92, 246, 0.25), rgba(59, 130, 246, 0.2));
+      }
+
+      .price {
+        font-size: 3rem;
+        font-weight: 800;
+        color: #fff;
+      }
+
+      .price small {
+        font-size: 1rem;
+        font-weight: 500;
+        color: rgba(229, 231, 235, 0.7);
+      }
+
+      .price-list {
+        display: grid;
+        gap: 10px;
+        color: rgba(229, 231, 235, 0.85);
+      }
+
+      .price-list span::before {
+        content: "✓";
+        color: #a78bfa;
+        margin-right: 10px;
+      }
+
+      .faq {
+        display: grid;
+        gap: 16px;
+      }
+
+      details {
+        border-radius: 18px;
+        padding: 18px 22px;
+        background: var(--card);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: border 0.3s ease, transform 0.3s ease;
+      }
+
+      details[open] {
+        border-color: rgba(139, 92, 246, 0.5);
+        transform: translateY(-2px);
+      }
+
+      summary {
+        cursor: pointer;
+        list-style: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      summary::-webkit-details-marker {
+        display: none;
+      }
+
+      summary::after {
+        content: "+";
+        font-size: 1.4rem;
+        color: #c4b5fd;
+        transition: transform 0.2s ease;
+      }
+
+      details[open] summary::after {
+        transform: rotate(45deg);
+      }
+
+      details p {
+        margin-top: 12px;
+        color: rgba(229, 231, 235, 0.75);
+      }
+
+      footer {
+        padding: 36px 0 60px;
+        color: rgba(229, 231, 235, 0.6);
+        text-align: center;
+      }
+
+      .particles {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .particle {
+        position: absolute;
+        width: var(--size);
+        height: var(--size);
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.8), rgba(59, 130, 246, 0.2));
+        opacity: 0.6;
+        filter: blur(0.4px);
+        animation: float var(--speed) ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate3d(0, 0, 0);
+        }
+        50% {
+          transform: translate3d(0, -40px, 0);
+        }
+        100% {
+          transform: translate3d(0, 0, 0);
+        }
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 900px) {
+        .hero {
+          padding-top: 96px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .section {
+          padding: 72px 0;
+        }
+
+        .hero-grid {
+          gap: 32px;
+        }
+
+        .hero-card {
+          padding: 22px;
+        }
+
+        .pricing {
+          gap: 18px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .btn {
+          width: 100%;
+        }
+
+        .hero-cta {
+          flex-direction: column;
+          align-items: stretch;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="particles" aria-hidden="true"></div>
+
+    <div class="page">
+      <header class="hero section">
+        <div class="container hero-grid">
+          <div class="reveal">
+            <span class="badge">AI Prompt Pack Pro</span>
+            <h1 class="title">AI Prompt Pack Pro</h1>
+            <p class="subtitle">25 Battle-Tested Prompts + 5 Bonus Templates</p>
+            <div class="hero-cta">
+              <a class="btn primary" href="https://payhip.com/KasperPrompts">Get Instant Access — $7</a>
+              <a class="btn ghost" href="#inside">See what’s inside</a>
+            </div>
+          </div>
+          <div class="hero-card glass reveal">
+            <strong>Turn AI into a consistent growth engine.</strong>
+            <p>
+              Skip the trial-and-error. These prompts are structured, reusable, and designed to deliver
+              faster results with any modern AI model.
+            </p>
+            <div class="hero-stats">
+              <div class="stat">
+                <span>30 total assets</span>
+                <small>25 prompts + 5 templates</small>
+              </div>
+              <div class="stat">
+                <span>Instant download</span>
+                <small>Access right after purchase</small>
+              </div>
+              <div class="stat">
+                <span>Plug-and-play</span>
+                <small>Just paste, customize, and run</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section id="inside" class="section">
+        <div class="container">
+          <h2 class="section-title reveal">What’s Inside</h2>
+          <p class="section-lead reveal">
+            Six focused prompt categories that cover marketing, productivity, strategy, and creative execution.
+          </p>
+          <div class="grid-3">
+            <div class="category-card glass reveal">
+              <span class="pill">Category 01</span>
+              <h3>Marketing & Sales</h3>
+              <p>Persuasive copy, offer positioning, and conversion-focused messaging.</p>
+            </div>
+            <div class="category-card glass reveal">
+              <span class="pill">Category 02</span>
+              <h3>Content & Social</h3>
+              <p>Ideas, hooks, and multi-channel content blueprints in minutes.</p>
+            </div>
+            <div class="category-card glass reveal">
+              <span class="pill">Category 03</span>
+              <h3>Productivity & Planning</h3>
+              <p>Turn goals into clear, actionable plans with structured prompts.</p>
+            </div>
+            <div class="category-card glass reveal">
+              <span class="pill">Category 04</span>
+              <h3>Business Strategy</h3>
+              <p>Competitive insights, market angles, and next-step decision guides.</p>
+            </div>
+            <div class="category-card glass reveal">
+              <span class="pill">Category 05</span>
+              <h3>Coding & Debugging</h3>
+              <p>Cleaner prompts for faster fixes and smarter code generation.</p>
+            </div>
+            <div class="category-card glass reveal">
+              <span class="pill">Category 06</span>
+              <h3>Design & Creativity</h3>
+              <p>Creative directions, visual concepts, and clear feedback loops.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title reveal">Features & Benefits</h2>
+          <p class="section-lead reveal">
+            Designed for creators, marketers, founders, and anyone who needs reliable AI output fast.
+          </p>
+          <div class="grid-3">
+            <div class="feature-card glass reveal">
+              <div class="icon-wrap">⚡</div>
+              <h3>Instant clarity</h3>
+              <p>Every prompt is structured to remove ambiguity and guide better responses.</p>
+            </div>
+            <div class="feature-card glass reveal">
+              <div class="icon-wrap">🧠</div>
+              <h3>Battle-tested</h3>
+              <p>Built from real workflows so you can move straight to execution.</p>
+            </div>
+            <div class="feature-card glass reveal">
+              <div class="icon-wrap">🧩</div>
+              <h3>Reusable templates</h3>
+              <p>Modular frameworks you can keep using for new campaigns and projects.</p>
+            </div>
+            <div class="feature-card glass reveal">
+              <div class="icon-wrap">📈</div>
+              <h3>Conversion focused</h3>
+              <p>Prompts engineered to drive action, engagement, and clear next steps.</p>
+            </div>
+            <div class="feature-card glass reveal">
+              <div class="icon-wrap">💼</div>
+              <h3>Professional polish</h3>
+              <p>Sharper outputs for pitches, product ideas, and client-ready copy.</p>
+            </div>
+            <div class="feature-card glass reveal">
+              <div class="icon-wrap">🔒</div>
+              <h3>Yours forever</h3>
+              <p>One-time purchase with immediate access and lifetime use.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" class="section">
+        <div class="container pricing">
+          <div class="reveal">
+            <h2 class="section-title">One Simple Price</h2>
+            <p class="section-lead">
+              Get the complete AI Prompt Pack Pro today. No subscriptions, no hassle.
+            </p>
+          </div>
+          <div class="price-card glass reveal">
+            <div>
+              <div class="price">$7 <small>one-time</small></div>
+              <p>Includes the full prompt library + 5 bonus templates.</p>
+            </div>
+            <div class="price-list">
+              <span>Instant digital delivery</span>
+              <span>Works across popular AI tools</span>
+              <span>Ready-to-use and easy to customize</span>
+            </div>
+            <a class="btn primary" href="https://payhip.com/KasperPrompts">Buy Now — $7</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title reveal">FAQ</h2>
+          <div class="faq">
+            <details class="reveal" open>
+              <summary>How do I access the prompts after purchase?</summary>
+              <p>Right after checkout, you’ll receive a download link so you can start using the prompts immediately.</p>
+            </details>
+            <details class="reveal">
+              <summary>Do these prompts work with any AI model?</summary>
+              <p>Yes. The prompts are written to be model-agnostic, so you can use them with the AI tool you prefer.</p>
+            </details>
+            <details class="reveal">
+              <summary>Can I reuse the prompts for multiple projects?</summary>
+              <p>Absolutely. They’re designed to be reused and customized for different goals.</p>
+            </details>
+            <details class="reveal">
+              <summary>Is this a subscription?</summary>
+              <p>No. It’s a one-time payment for lifetime access.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="container">
+          <p>AI Prompt Pack Pro • Built to help you get better AI results, faster.</p>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const particleContainer = document.querySelector(".particles");
+      const particleCount = 36;
+
+      for (let i = 0; i < particleCount; i += 1) {
+        const particle = document.createElement("span");
+        particle.className = "particle";
+        const size = Math.random() * 6 + 6;
+        const left = Math.random() * 100;
+        const top = Math.random() * 100;
+        const speed = Math.random() * 10 + 8;
+        const delay = Math.random() * 10 * -1;
+        particle.style.setProperty("--size", `${size}px`);
+        particle.style.setProperty("--speed", `${speed}s`);
+        particle.style.left = `${left}%`;
+        particle.style.top = `${top}%`;
+        particle.style.animationDelay = `${delay}s`;
+        particleContainer.appendChild(particle);
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+      document.querySelectorAll("details").forEach((detail) => {
+        detail.addEventListener("toggle", () => {
+          if (detail.open) {
+            document.querySelectorAll("details").forEach((other) => {
+              if (other !== detail) {
+                other.removeAttribute("open");
+              }
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
