@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mcjeffrey.github.io/ai-prompt-pack/sitemap.xml
